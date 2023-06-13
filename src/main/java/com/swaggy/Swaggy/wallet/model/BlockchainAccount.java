@@ -23,7 +23,11 @@ public class BlockchainAccount extends AbstractModel {
 	private Long id;
 
 	@Column(unique = true)
-	private String uId;
+	private String walletAddress;
+
+	private String privateKey;
+
+	private String publicKey;
 
 	private String walletType;
 

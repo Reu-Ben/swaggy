@@ -20,6 +20,8 @@ import com.swaggy.Swaggy.wallet.response.CustomResponse;
 import com.swaggy.Swaggy.wallet.response.UserResponse;
 import com.swaggy.Swaggy.wallet.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -27,26 +29,32 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping
-	public ResponseEntity<UserResponse> create(@RequestBody CreateUserRequest request) {
-		return ResponseEntity.status(HttpStatus.OK).body(userService.create(request));
+	@Operation(description = "Create a new user", tags = "User Management")
+	@PostMapping("/{accountType}")
+	public ResponseEntity<UserResponse> create(@RequestBody CreateUserRequest request,
+			@PathVariable("accountType") String accountType) {
+		return ResponseEntity.status(HttpStatus.OK).body(userService.create(request, accountType));
 	}
 
+	@Operation(description = "Update existing user", tags = "User Management")
 	@PutMapping
 	public ResponseEntity<UserResponse> update(@RequestBody UpdateUserRequest request) {
 		return ResponseEntity.status(HttpStatus.OK).body(userService.update(request));
 	}
 
+	@Operation(description = "Find all users", tags = "User Management")
 	@GetMapping
 	public ResponseEntity<List<UserResponse>> findAll() {
 		return ResponseEntity.status(HttpStatus.OK).body(userService.findAllUsers());
 	}
 
+	@Operation(description = "Find user by ID", tags = "User Management")
 	@GetMapping("/{id}")
 	public ResponseEntity<UserResponse> findById(@PathVariable("id") Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(userService.findById(id));
 	}
 
+	@Operation(description = "Delete user by ID", tags = "User Management")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		userService.delete(id);

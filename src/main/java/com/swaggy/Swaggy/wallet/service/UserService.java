@@ -21,10 +21,10 @@ public class UserService extends GenericService<User, UserDTO> {
 	@Autowired
 	private BlockchainAccountService blockchainService;
 
-	public UserResponse create(CreateUserRequest request) {
+	public UserResponse create(CreateUserRequest request, String accountType) {
 		UserDTO user = new UserDTO();
 		_setUserDetails(request, user);
-		BlockchainAccountDTO account = blockchainService.createAccount("BTC");
+		BlockchainAccountDTO account = blockchainService.createAccount(accountType);
 		user.setAccount(account);
 		return new UserResponse(super.create(user));
 	}

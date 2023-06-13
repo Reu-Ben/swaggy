@@ -13,7 +13,11 @@ public class BlockchainAccountDTO extends AbstractDTO {
 
 	private Long id;
 
-	private String uId;
+	private String walletAddress;
+
+	private String privateKey;
+
+	private String publicKey;
 
 	private String walletType;
 

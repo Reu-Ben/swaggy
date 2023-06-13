@@ -15,10 +15,10 @@ import com.swaggy.Swaggy.wallet.domain.repository.GenericRepository;
 public class GenericService<Entity extends AbstractModel, DTO extends AbstractDTO> implements ICrudService<DTO> {
 
 	@Autowired
-	private GenericRepository<Entity> repository;
+	protected GenericRepository<Entity> repository;
 
 	@Autowired
-	private IMapper<Entity, DTO> mapper;
+	protected IMapper<Entity, DTO> mapper;
 
 	@Override
 	public DTO create(DTO dto) {
