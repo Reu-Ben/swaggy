@@ -9,6 +9,6 @@ public class CurrencyExchangeRequest {
 
 	private String to;
 
-	private Double ammount;
+	private Double amount;
 
 }

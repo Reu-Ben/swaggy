@@ -1,7 +1,6 @@
 package com.swaggy.Swaggy.wallet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,13 +20,15 @@ public class RateExchangeController {
 	@Autowired
 	private ExchangeRateService exchangeRateService;
 
-	@Operation(description = "This Api returns currency exchange data in real time", tags = "Forex Exchange")
+	@Operation(description = "This API returns currency exchange data in real-time", tags = "Forex Exchange")
 	@PostMapping
 	public ResponseEntity<ExchangeResponse> getRate(@RequestBody CurrencyExchangeRequest request) {
-		ExchangeResponse response = exchangeRateService.getExchange(request.getFrom(), request.getTo(),
-				request.getAmmount());
+		exchangeRateService.validateCurrencyExchangeRequest(request);
 
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+		ExchangeResponse response = exchangeRateService.getExchange(request.getFrom(), request.getTo(),
+				request.getAmount());
+		return ResponseEntity.ok(response);
+
 	}
 
 }
