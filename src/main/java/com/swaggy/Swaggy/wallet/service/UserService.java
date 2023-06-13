@@ -47,7 +47,7 @@ public class UserService extends GenericService<User, UserDTO> {
 		super.delete(super.read(userId));
 	}
 
-	private UserDTO _setUserDetails(IUserRequest request, UserDTO user) {
+	private void _setUserDetails(IUserRequest request, UserDTO user) {
 		user.setAddress(request.getAddress());
 		user.setDob(request.getDob());
 		user.setEmail(request.getEmail());
@@ -55,7 +55,6 @@ public class UserService extends GenericService<User, UserDTO> {
 		user.setName(request.getName());
 		user.setPassword(request.getPassword());
 		user.setNickname(request.getNickname());
-		return user;
 	}
 
 }

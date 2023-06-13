@@ -1,7 +1,5 @@
 package com.swaggy.Swaggy.wallet.service;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -20,8 +18,7 @@ public class ExchangeRateService {
 	@Autowired
 	private HttpEntity<String> httpEntity;
 
-	public ExchangeResponse getExchange(String from, String to, double ammount)
-			throws IOException, InterruptedException {
+	public ExchangeResponse getExchange(String from, String to, double ammount) {
 
 		final String exchangeUrl = "https://currency-exchange.p.rapidapi.com/exchange?from=" + from + "&to=" + to
 				+ "&q=" + ammount;

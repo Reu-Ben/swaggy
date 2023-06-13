@@ -1,7 +1,5 @@
 package com.swaggy.Swaggy.wallet.controller;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +23,7 @@ public class RateExchangeController {
 
 	@Operation(description = "This Api returns currency exchange data in real time", tags = "Forex Exchange")
 	@PostMapping
-	public ResponseEntity<?> getRate(@RequestBody CurrencyExchangeRequest request)
-			throws IOException, InterruptedException {
+	public ResponseEntity<ExchangeResponse> getRate(@RequestBody CurrencyExchangeRequest request) {
 		ExchangeResponse response = exchangeRateService.getExchange(request.getFrom(), request.getTo(),
 				request.getAmmount());
 
